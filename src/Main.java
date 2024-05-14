@@ -4,7 +4,8 @@ public class Main extends userInput{
     }
 
     public static void main(String[] args) {
-        userInput game = new userInput(new String[]{"ferrari", "BMW", "VolksWagen", "Audi", "Ford"});
+        // Now that we passed it through the classes we now can set the array variable
+        Main game = new Main(new String[]{"ferrari", "BMW", "VolksWagen", "Audi", "Ford"});
         game.play();
     }
 };
