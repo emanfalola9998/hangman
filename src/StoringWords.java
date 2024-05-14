@@ -23,13 +23,5 @@ public class StoringWords {
         return words[randomIndex];
     };
 
-    public static void main(String[] args) {
-        String[] wordsArray = {"ferrari", "BMW", "VolksWagen", "Audi", "Ford"};
-        StoringWords storingWords = new StoringWords(wordsArray);
-
-        // Call getRandomWord() to get a random word
-        String randomWord = storingWords.getRandomWord();
-        System.out.println("Random word: " + randomWord);
-    }
 
 }
