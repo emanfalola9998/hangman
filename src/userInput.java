@@ -19,44 +19,60 @@ public class userInput extends Results {
         // get selectedWord from underscores
         String underscores = result[1];
 
-        // StringBuilder class again builds mutable strings
-        StringBuilder guessedWord = new StringBuilder(underscores);
+        // We initialise guessedWord in our own class, so we can modify its content when the user guesses the correct answer
+        // we initlise Stringbuilder again as the string returned is a String Object again because of underscores.toString()
 
-        // whilst attempts is 0 and the underscore is present run the loop
+        StringBuilder guessedWord = new StringBuilder(underscores);
+        int storedAttemps = 100;
+        char[] attemptArray = new char[storedAttemps];
+        int storedAttempts = 0; // Initialize storedAttempts to 0
+
+// while attempts is greater than 0 and there are underscores present, run the loop
         while (attempts > 0 && guessedWord.indexOf("_") != -1) {
             System.out.println("Word: " + guessedWord);
             System.out.println("Attempts left: " + attempts);
             System.out.print("Enter a character: ");
-            // reads the next line inputted by the user
-            // .charAt() reads the first character (which is applicable for our example as we only want the first character
             char guess = scanner.nextLine().charAt(0);
 
-            // initialised a boolean
-            boolean found = false;
-            // created a check using a forloop to see if any of the characters equals the character inputted by the user
+            // Check if the guessed character is already in attemptArray
+            boolean alreadyGuessed = false;
+            for (char character : attemptArray) {
+                if (character == guess) {
+                    alreadyGuessed = true;
+                    break;
+                }
+            }
+
+            if (alreadyGuessed) {
+                System.out.println("Enter another character as that character has already been selected.");
+                continue; // Go to the next iteration of the loop
+            }
+
+            boolean found = false; // Reset found flag for each guess
             for (int i = 0; i < selectedWord.length(); i++) {
                 if (selectedWord.charAt(i) == guess) {
-                    // if it's correct then we replace our underscore with the guessed letter
+                    // If the guessed character matches a character in the word, replace the underscore
                     guessedWord.setCharAt(i, guess);
-                    // then we set the boolean to true
                     found = true;
                 }
             }
 
             if (!found) {
-                // if found remains false: incorrect guess, we reduced the number of attempts the user has
+                // If the guessed character is not found in the word, reduce the number of attempts
                 attempts--;
                 System.out.println("Incorrect guess. Try again.");
             }
+
+            // Add the guessed character to the attemptArray
+            attemptArray[storedAttempts++] = guess;
         }
 
+// Print appropriate message based on game outcome
         if (guessedWord.indexOf("_") == -1) {
-            // if there are no more underscores then the user has guessed the word
             System.out.println("Congratulations! You guessed the word: " + selectedWord);
         } else {
-            // The user has not guessed the word and has run out of attempts
             System.out.println("Out of attempts. The word was: " + selectedWord);
         }
-    }
 
+    }
 }

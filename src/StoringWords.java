@@ -26,5 +26,4 @@ public class StoringWords {
         return words[randomIndex];
     };
 
-
 }
