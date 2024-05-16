@@ -33,6 +33,7 @@ public class userInput extends Results {
             System.out.println("Attempts left: " + attempts);
             System.out.print("Enter a character: ");
             char guess = scanner.nextLine().charAt(0);
+            String guessString = String.valueOf(guess);
 
             // Check if the guessed character is already in attemptArray
             boolean alreadyGuessed = false;
@@ -50,7 +51,7 @@ public class userInput extends Results {
 
             boolean found = false; // Reset found flag for each guess
             for (int i = 0; i < selectedWord.length(); i++) {
-                if (selectedWord.charAt(i) == guess) {
+                if ( guessString.equalsIgnoreCase(String.valueOf(selectedWord.charAt(i))) ) {
                     // If the guessed character matches a character in the word, replace the underscore
                     guessedWord.setCharAt(i, guess);
                     found = true;
