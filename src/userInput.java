@@ -49,6 +49,14 @@ public class userInput extends Results {
                 continue; // Go to the next iteration of the loop
             }
 
+
+            // Check if the guessed character is a number
+            if (isNumber(guess)) {
+                System.out.println("Enter another character as numbers are not allowed.");
+                continue; // Go to the next iteration of the loop
+            }
+
+
             boolean found = false; // Reset found flag for each guess
             for (int i = 0; i < selectedWord.length(); i++) {
                 if ( guessString.equalsIgnoreCase(String.valueOf(selectedWord.charAt(i))) ) {
@@ -76,4 +84,8 @@ public class userInput extends Results {
         }
 
     }
+    private boolean isNumber(char c) {
+        return Character.isDigit(c);
+    }
+
 }
