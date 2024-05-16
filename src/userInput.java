@@ -6,7 +6,6 @@ public class userInput extends Results {
         super(words);
     }
 
-
     public void play() {
         // Scanner class used to create user input
         Scanner scanner = new Scanner(System.in);
@@ -21,13 +20,11 @@ public class userInput extends Results {
 
         // We initialise guessedWord in our own class, so we can modify its content when the user guesses the correct answer
         // we initlise Stringbuilder again as the string returned is a String Object again because of underscores.toString()
-
         StringBuilder guessedWord = new StringBuilder(underscores);
-        int storedAttemps = 100;
-        char[] attemptArray = new char[storedAttemps];
         int storedAttempts = 0; // Initialize storedAttempts to 0
+        char[] attemptArray = new char[100]; // Initialize attemptArray with a fixed size
 
-// while attempts is greater than 0 and there are underscores present, run the loop
+        // while attempts is greater than 0 and there are underscores present, run the loop
         while (attempts > 0 && guessedWord.indexOf("_") != -1) {
             System.out.println("Word: " + guessedWord);
             System.out.println("Attempts left: " + attempts);
@@ -49,17 +46,15 @@ public class userInput extends Results {
                 continue; // Go to the next iteration of the loop
             }
 
-
             // Check if the guessed character is a number
             if (isNumber(guess)) {
                 System.out.println("Enter another character as numbers are not allowed.");
                 continue; // Go to the next iteration of the loop
             }
 
-
             boolean found = false; // Reset found flag for each guess
             for (int i = 0; i < selectedWord.length(); i++) {
-                if ( guessString.equalsIgnoreCase(String.valueOf(selectedWord.charAt(i))) ) {
+                if (guessString.equalsIgnoreCase(String.valueOf(selectedWord.charAt(i)))) {
                     // If the guessed character matches a character in the word, replace the underscore
                     guessedWord.setCharAt(i, guess);
                     found = true;
@@ -76,16 +71,27 @@ public class userInput extends Results {
             attemptArray[storedAttempts++] = guess;
         }
 
-// Print appropriate message based on game outcome
+        // Print appropriate message based on game outcome
         if (guessedWord.indexOf("_") == -1) {
             System.out.println("Congratulations! You guessed the word: " + selectedWord);
+            System.out.println("Would you like to proceed to the next level? (yes/no)");
+            String playAgain = scanner.nextLine();
+            if (playAgain.equalsIgnoreCase("yes")) {
+                System.out.println("Level 2: The hint is football teams!");
+                words = new String[]{"Chelsea", "Arsenal", "Manchester"};
+                play();
+            }
         } else {
             System.out.println("Out of attempts. The word was: " + selectedWord);
+            System.out.println("Would you like to play again? (yes/no)");
+            String playAgain = scanner.nextLine();
+            if (playAgain.equalsIgnoreCase("yes")) {
+                play();
+            }
         }
-
     }
+
     private boolean isNumber(char c) {
         return Character.isDigit(c);
     }
-
 }

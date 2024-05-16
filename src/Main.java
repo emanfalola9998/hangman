@@ -8,5 +8,6 @@ public class Main extends userInput{
         // We use new keyword for initialising a string array as arrays are objects in Java
         Main game = new Main(new String[]{"ferrari", "BMW", "VolksWagen", "Audi", "Ford"});
         game.play();
+
     }
 };
