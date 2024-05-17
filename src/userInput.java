@@ -20,16 +20,17 @@ public class userInput extends Results {
 
         // We initialise guessedWord in our own class, so we can modify its content when the user guesses the correct answer
         // we initlise Stringbuilder again as the string returned is a String Object again because of underscores.toString()
-        StringBuilder guessedWord = new StringBuilder(underscores);
+        StringBuilder hiddenWord = new StringBuilder(underscores);
         int storedAttempts = 0; // Initialize storedAttempts to 0
         char[] attemptArray = new char[100]; // Initialize attemptArray with a fixed size
 
         // while attempts is greater than 0 and there are underscores present, run the loop
-        while (attempts > 0 && guessedWord.indexOf("_") != -1) {
-            System.out.println("Word: " + guessedWord);
+        while (attempts > 0 && hiddenWord.indexOf("_") != -1) {
+            System.out.println("Word: " + hiddenWord);
             System.out.println("Attempts left: " + attempts);
             System.out.print("Enter a character: ");
             char guess = scanner.nextLine().charAt(0);
+            // String converter
             String guessString = String.valueOf(guess);
 
             // Check if the guessed character is already in attemptArray
@@ -56,7 +57,7 @@ public class userInput extends Results {
             for (int i = 0; i < selectedWord.length(); i++) {
                 if (guessString.equalsIgnoreCase(String.valueOf(selectedWord.charAt(i)))) {
                     // If the guessed character matches a character in the word, replace the underscore
-                    guessedWord.setCharAt(i, guess);
+                    hiddenWord.setCharAt(i, guess);
                     found = true;
                 }
             }
@@ -68,11 +69,12 @@ public class userInput extends Results {
             }
 
             // Add the guessed character to the attemptArray
+            // at the index of storedAttemps
             attemptArray[storedAttempts++] = guess;
         }
 
         // Print appropriate message based on game outcome
-        if (guessedWord.indexOf("_") == -1) {
+        if (hiddenWord.indexOf("_") == -1) {
             System.out.println("Congratulations! You guessed the word: " + selectedWord);
             System.out.println("Would you like to proceed to the next level? (yes/no)");
             String playAgain = scanner.nextLine();
