@@ -1,29 +1,27 @@
 import java.util.Random;
 
-public class StoringWords {
-    // We defined the string array to words
-    protected String[] words;
+public abstract class StoringWords {
+    // Keep the field private
+    private String[] words;
 
     // Constructor
     public StoringWords(String[] words){
         this.words = words;
-    };
-    // getter
-    public String[] getWords() {
-        return words;
-    };
-    //setter
-    public void setWords(String[] words) {
-        this.words = words;
-    };
-    // Method used to select a random word from the list we give it
+    }
+
+    // Abstract getter
+    public abstract String[] getWords();
+
+    // Abstract setter
+    public abstract void setWords(String[] words);
+
+    // Concrete method to select a random word
     public String getRandomWord() {
         // Generate a random index within the range of the array's length
         Random random = new Random();
         // sets the maximum range the randomIndex can take
-        int randomIndex = random.nextInt(words.length);
+        int randomIndex = random.nextInt(getWords().length);
         // Return the word at the random index
-        return words[randomIndex];
-    };
-
+        return getWords()[randomIndex];
+    }
 }

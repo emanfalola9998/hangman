@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class userInput extends Results {
+public abstract class userInput extends Results {
     public userInput(String[] words) {
         // We want words pass through via super everytime, so we can access it when making the object
         super(words);
@@ -80,7 +80,8 @@ public class userInput extends Results {
             String playAgain = scanner.nextLine();
             if (playAgain.equalsIgnoreCase("yes")) {
                 System.out.println("Level 2: The hint is football teams!");
-                words = new String[]{"Chelsea", "Arsenal", "Manchester"};
+//                words = new String[]{"Chelsea", "Arsenal", "Manchester"};
+                setWords(new String[]{"Chelsea", "Arsenal", "Manchester"});
                 play();
             }
         } else {
