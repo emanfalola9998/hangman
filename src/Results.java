@@ -3,21 +3,22 @@ public class Results extends StoringWords {
 
     public Results(String[] words) {
         super(words);
-//        this.words = words;
     }
 
+    @Override
     public String[] getWords() {
-        return this.words; // Access through the getter method
+        return this.words;
     }
 
+    @Override
     public void setWords(String[] words) {
-        this.words = words; // Access through the setter method
+        this.words = words;
     }
 
     public String[] getRandomWordWithUnderscores() {
         // Access getRandomWord() method from the superclass
         String randomWord = getRandomWord();
-        // Access generateUnderscores() method in this class
+        // Generate underscores for the length of the random word
         String underscores = generateUnderscores(randomWord.length());
         return new String[]{randomWord, underscores};
     }
@@ -28,7 +29,6 @@ public class Results extends StoringWords {
         for (int i = 0; i < length; i++) {
             underscores.append("_");
         }
-        // Return it back to an ordinary string object which makes it immutable
         return underscores.toString();
     }
 }
